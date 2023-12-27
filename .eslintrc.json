@@ -17,10 +17,9 @@
 	},
 	"plugins": ["@typescript-eslint", "prettier"],
 	"rules": {
-		"prettier/prettier": "error",
 		"no-case-declarations": "off",
 		"no-constant-condition": "off",
-		"useTabs": false,
-		"@typescript-eslint/ban-ts-comment": "off"
+		"@typescript-eslint/ban-ts-comment": "off",
+		"prettier/prettier": "error"
 	}
 }
