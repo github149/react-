@@ -6,6 +6,7 @@ const pkgPath = resolvePkgPath(name);
 //react产物路径
 const pkgDistPath = resolvePkgPath(name, true);
 export default [
+	//react
 	{
 		input: `${pkgPath}/${module}`,
 		output: {
@@ -15,6 +16,7 @@ export default [
 		},
 		plugins: [
 			...getBaseRollupPlugins(),
+			//生成package.json
 			generatePackageJson({
 				inputFolder: pkgPath,
 				outputFolder: pkgDistPath,

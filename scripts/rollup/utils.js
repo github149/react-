@@ -17,8 +17,7 @@ export function getPackageJSON(pkgName) {
 	const str = fs.readFileSync(pathName, { encoding: 'utf-8' });
 	return JSON.parse(str);
 }
-const react = getPackageJSON('react');
-console.log('react', react);
+
 //基础的rollupPlugins
 export function getBaseRollupPlugins({ typescript = {} } = {}) {
 	return [cjs(), ts(typescript)];
