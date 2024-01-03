@@ -6,6 +6,7 @@ let workInProgress: FiberNode | null = null;
 function prepareFreshStack(fiber: FiberNode) {
 	workInProgress = fiber;
 }
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function renderRoot(root: FiberNode) {
 	//初始化
 	prepareFreshStack(root);
