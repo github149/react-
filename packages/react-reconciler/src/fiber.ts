@@ -3,7 +3,7 @@ import { Key, Props, Ref } from 'shared/ReactTypes';
 import { WorkTag } from './workTags';
 import { Flags, NoFlags } from './fiberFlags';
 import { Container } from 'hostConfig';
-
+// 形成FiberNode数据结构
 export class FiberNode {
 	tag: WorkTag;
 	key: any;
@@ -46,6 +46,7 @@ export class FiberNode {
 	}
 }
 
+//FiberRootNode是React中的内部数据结构，用于表示整个React应用的根节点。
 export class FiberRootNode {
 	container: Container;
 	current: FiberNode;
@@ -58,6 +59,7 @@ export class FiberRootNode {
 	}
 }
 
+//createWorkInProgress是一个内部方法，用于创建一个新的工作中的Fiber节点。
 export const createWorkInProgress = (
 	current: FiberNode,
 	pendingProps: Props
