@@ -20,17 +20,17 @@ export const createUpdate = <State>(action: Action<State>): Update<State> => {
 //1. 创建一个空的对象来表示这个更新队列
 //2. 设置默认属性，如是否需要同步flush同步等
 //3. 返回这个更新队列对象
-export const createUpdateQueue = <Action>() => {
+export const createUpdateQueue = <State>() => {
 	return {
 		shared: {
 			pending: null
 		}
-	} as UpdateQueue<Action>;
+	} as UpdateQueue<State>;
 };
 
-export const enqueueUpdate = <Action>(
-	updateQueue: UpdateQueue<Action>,
-	update: Update<Action>
+export const enqueueUpdate = <State>(
+	updateQueue: UpdateQueue<State>,
+	update: Update<State>
 ) => {
 	updateQueue.shared.pending = update;
 };
