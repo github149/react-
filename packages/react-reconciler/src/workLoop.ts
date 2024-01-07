@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { beginWork } from './beginWork';
 import { completeWork } from './completeWork';
 import { FiberNode, FiberRootNode, createWorkInProgress } from './fiber';
@@ -41,9 +42,6 @@ export function scheduleUpdateOnFiber(fiber: FiberNode) {
 }
 
 //从当前的网上遍历到根节点
-
-// markUpdateFromFiberToRoot 是 React 内部的一个方法，它用于在 Fiber 树中标记需要从一个 Fiber 向上冒泡更新到根节点。
-// 在 React 中，组件更新可能是从子组件触发的，也可能是从父组件触发的。无论如何，更新都需要从触发点向上冒泡，通知父组件进行更新。
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function markUpdateFromFiberToRoot(fiber: FiberNode) {}
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -63,6 +61,10 @@ function renderRoot(root: FiberRootNode) {
 			workInProgress = null;
 		}
 	} while (true);
+	const finishedWork = root.current.alternate;
+	root.finishedWork = finishedWork;
+	//wip fiberNode树中的flags
+	commitRoot(root);
 }
 // workLoop 可以说是 React 更新机制的核心驱动器，它通过不断循环，保证 Fiber 树能按需进行初始化、更新和清理工作。
 function workLoop() {
@@ -96,4 +98,7 @@ function completeUnitOfWork(fiber: FiberNode) {
 		node = node.return;
 		workInProgress = node;
 	} while (node != null);
+}
+function commitRoot(root: FiberRootNode) {
+	throw new Error('Function not implemented.');
 }
