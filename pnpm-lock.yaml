@@ -18,6 +18,9 @@ importers:
       '@commitlint/config-conventional':
         specifier: ^18.4.3
         version: registry.npmmirror.com/@commitlint/config-conventional@18.4.3
+      '@rollup/plugin-alias':
+        specifier: ^5.1.0
+        version: registry.npmmirror.com/@rollup/plugin-alias@5.1.0(rollup@4.9.1)
       '@rollup/plugin-commonjs':
         specifier: ^25.0.7
         version: registry.npmmirror.com/@rollup/plugin-commonjs@25.0.7(rollup@4.9.1)
@@ -60,6 +63,18 @@ importers:
 
   packages/react:
     dependencies:
+      shared:
+        specifier: workspace:*
+        version: link:../shared
+
+  packages/react-dom:
+    dependencies:
+      react:
+        specifier: workspace:*
+        version: link:../react
+      react-reconciler:
+        specifier: workspace:*
+        version: link:../react-reconciler
       shared:
         specifier: workspace:*
         version: link:../shared
@@ -448,6 +463,22 @@ packages:
       open: registry.npmmirror.com/open@9.1.0
       picocolors: registry.npmmirror.com/picocolors@1.0.0
       tslib: registry.npmmirror.com/tslib@2.6.2
+    dev: true
+
+  registry.npmmirror.com/@rollup/plugin-alias@5.1.0(rollup@4.9.1):
+    resolution: {integrity: sha512-lpA3RZ9PdIG7qqhEfv79tBffNaoDuukFDrmhLqg9ifv99u/ehn+lOg30x2zmhf8AQqQUZaMk/B9fZraQ6/acDQ==, tarball: https://registry.npmmirror.com/@rollup/plugin-alias/-/plugin-alias-5.1.0.tgz}
+    id: registry.npmmirror.com/@rollup/plugin-alias/5.1.0
+    name: '@rollup/plugin-alias'
+    version: 5.1.0
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0||^3.0.0||^4.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      rollup: registry.npmmirror.com/rollup@4.9.1
+      slash: registry.npmmirror.com/slash@4.0.0
     dev: true
 
   registry.npmmirror.com/@rollup/plugin-commonjs@25.0.7(rollup@4.9.1):
@@ -3010,6 +3041,13 @@ packages:
     name: slash
     version: 3.0.0
     engines: {node: '>=8'}
+    dev: true
+
+  registry.npmmirror.com/slash@4.0.0:
+    resolution: {integrity: sha512-3dOsAHXXUkQTpOYcoAxLIorMTp4gIQr5IW3iVb7A7lFIp0VHhnynm9izx6TssdrIcVIESAlVjtnO2K8bg+Coew==, tarball: https://registry.npmmirror.com/slash/-/slash-4.0.0.tgz}
+    name: slash
+    version: 4.0.0
+    engines: {node: '>=12'}
     dev: true
 
   registry.npmmirror.com/sort-keys@2.0.0:
