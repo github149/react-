@@ -18,8 +18,9 @@ export const beginWork = (wip: FiberNode) => {
 			if (__DEV__) {
 				console.warn('beginWork未实现的类型');
 			}
-			return null;
+			break;
 	}
+	return null;
 };
 function updateHostRoot(wip: FiberNode) {
 	const baseState = wip.memoizedState;
@@ -42,7 +43,7 @@ function reconcileChildren(wip: FiberNode, children?: ReactElementType) {
 	const current = wip.alternate;
 	if (current != null) {
 		//update
-		wip.child = reconcileChildFibers(wip, current.child, children);
+		wip.child = reconcileChildFibers(wip, current?.child, children);
 	} else {
 		wip.child = mountChildFibers(wip, null, children);
 	}

@@ -10,11 +10,13 @@ export class FiberNode {
 	stateNode: any;
 	pendingProps: Props;
 	type: any;
+
 	return: FiberNode | null;
 	sibling: FiberNode | null;
 	child: FiberNode | null;
 	index: number;
 	ref: Ref;
+
 	memoizedProps: Props | null;
 	memoizedState: any;
 	alternate: FiberNode | null;

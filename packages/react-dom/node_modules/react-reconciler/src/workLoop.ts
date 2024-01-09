@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { beginWork } from './beginWork';
+import { commitMutationEffects } from './commitWork';
 import { completeWork } from './completeWork';
 import { FiberNode, FiberRootNode, createWorkInProgress } from './fiber';
 import { MutationMask, NoFlags } from './fiberFlags';
@@ -7,28 +8,12 @@ import { HostRoot } from './workTags';
 
 let workInProgress: FiberNode | null = null;
 // prepareFreshStack 方法就是用于解决这个问题的。它会做以下工作：
-// 保存当前调用栈
-// 清空当前调用栈
-// 返回一个函数
-// 然后在执行真正的组件更新任务时：
 
-// 先调用 prepareFreshStack 返回的函数，清空调用栈
-// 执行更新任务
-// 如果任务发生错误，错误对象的调用栈将是干净的
 function prepareFreshStack(root: FiberRootNode) {
 	workInProgress = createWorkInProgress(root.current, {});
 }
 //实现调度功能
-// scheduleUpdateOnFiber 的主要作用就是完成这项任务：
-// 接收一个需要更新的 Fiber 对象
-// 检查该 Fiber 是否已经在更新过程中
-// 如果是，直接返回
-// 否则继续下一步
-// 将更新任务添加到该 Fiber 的更新队列中
-// 如果该 Fiber 是 Concurrent 模式，还需要额外的处理
-// 如设置需要挂起等标记
-// 返回 Fiber 对象
-// 之后，在 React 的调度循环中，会不断从各个 Fiber 的更新队列中取出任务执行更新工作。
+
 export function scheduleUpdateOnFiber(fiber: FiberNode) {
 	// TODO 调度功能
 	// fiberRootNode
@@ -41,7 +26,7 @@ export function scheduleUpdateOnFiber(fiber: FiberNode) {
 function markUpdateFromFiberToRoot(fiber: FiberNode) {
 	let node = fiber;
 	let parent = node.return;
-	while (parent != null) {
+	while (parent !== null) {
 		node = parent;
 		parent = node.return;
 	}
@@ -123,9 +108,11 @@ function commitRoot(root: FiberRootNode) {
 		// beforeMutation
 		// mutation Placement
 		// 切换在mutaion和layout阶段
+		commitMutationEffects(finishedWork);
 		root.current = finishedWork;
 		// layout
 	} else {
 		//
+		root.current = finishedWork;
 	}
 }

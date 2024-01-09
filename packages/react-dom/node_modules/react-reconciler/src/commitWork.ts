@@ -23,6 +23,7 @@ export const commitMutationEffects = (finishedWork: FiberNode) => {
 					nextEffect = sibling;
 					break up;
 				}
+				nextEffect = nextEffect.return;
 			}
 		}
 	}

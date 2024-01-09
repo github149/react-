@@ -1,7 +1,7 @@
 export type Container = Element;
 export type Instance = Element;
-export const createInstance = (type: string, props: unknown): Instance => {
-	console.log('props', props);
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const createInstance = (type: string, _props: unknown): Instance => {
 	// TODO 处理props
 	const element = document.createElement(type);
 	return element;
